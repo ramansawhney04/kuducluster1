@@ -1,0 +1,42 @@
+---
+ - name: repo for ubuntu
+   command: add-apt-repository main
+
+ - name: repo for ubuntu1
+   command: add-apt-repository universe
+
+ - name: repo for ubuntu2
+   command: add-apt-repository restricted
+
+ - name: repo for ubuntu3
+   command: add-apt-repository multiverse
+
+ - name: repo for kudu
+   copy: 
+    content: "deb [arch=amd64] http://archive.cloudera.com/beta/kudu/ubuntu/trusty/amd64/kudu trusty-kudu1 contrib" 
+    dest: /etc/apt/sources.list.d/kudu.list
+    mode: 0777
+
+ - name: update
+   command: apt-get update -y
+ 
+ - name: upgrade
+   command: apt-get upgrade -y
+
+ - name: Install python
+   apt: pkg=python-minimal state=installed update_cache=true
+ 
+ - name: adding repo for java 8
+   command: add-apt-repository ppa:openjdk-r/ppa
+
+ - name: install java 8
+   apt: pkg=openjdk-8-jdk state=installed update_cache=true
+ 
+ - name: installpackages
+   apt: name={{item}} state=latest force=yes
+   with_items:
+    - devscripts
+    - kudu
+    - kudu-master
+    - libkuduclient0
+    - libkuduclient-dev

@@ -1,0 +1,15 @@
+master1 ansible_ssh_host=192.168.33.111 ansible_ssh_user=root
+master2 ansible_ssh_host=192.168.33.112 ansible_ssh_user=root
+master3 ansible_ssh_host=192.168.33.110 ansible_ssh_user=root
+tserver1 ansible_ssh_host=192.168.33.113 ansible_ssh_user=root
+tserver2 ansible_ssh_host=192.168.33.114 ansible_ssh_user=root
+tserver3 ansible_ssh_host=192.168.33.115 ansible_ssh_user=root
+[masterkudu]
+master1
+master2
+master3
+[tserverkudu]
+tserver1
+tserver2
+tserver3
+
